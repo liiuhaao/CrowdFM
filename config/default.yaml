@@ -1,0 +1,32 @@
+lr: 0.01
+weight_decay: 0.00001
+batch_size: 256
+gradient_accumulation_steps: 2
+max_num_batch: 2
+epochs: 10000000
+test_interval: 10
+save_interval: 10
+num_workers: 0
+
+dim: &dim 32
+
+device: &device cuda:0
+
+model:
+    dim: *dim
+    device: *device
+    layer: 10
+    head: 4
+    dropout: 0.1
+
+simulator:
+    dim: *dim
+    num_worker_range: [20, 100]
+    num_task_range: [100, 300]
+    num_option_range: [2, 20]
+    num_answer_each_task_range: [2, 10]
+
+path:
+    data: "data"
+    src: "src"
+    log: "log"

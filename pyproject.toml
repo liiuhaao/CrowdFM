@@ -1,0 +1,30 @@
+[project]
+name = "crowdfm"
+version = "0.1.0"
+description = "Towards a Foundation Model for Crowdsourced Label Aggregation"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "dlwheel>=1.0.12",
+    "setuptools==80.10.2",
+    "tensorboard==2.20.0",
+    "matplotlib>=3.10.1",
+    "pandas>=2.2.3",
+    "scikit-learn>=1.6.1",
+    "torch>=2.6.0",
+    "torch-geometric>=2.6.1",
+]
+
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ty.rules]
+possibly-unresolved-reference = "ignore"
+unresolved-attribute = "ignore"
