@@ -1,0 +1,37 @@
+checkpoint_path: log/crowdsi/10000.pt
+output_path: log/crowdsi_evaluation.json
+base_seed: 42000
+
+dim: &dim 32
+device: &device cuda:0
+
+model:
+  dim: *dim
+  device: *device
+  layer: 10
+  head: 4
+  dropout: 0.0
+  mechanism_latent_dim: 16
+  num_mechanism_primitives: 8
+
+crowdsi:
+  alpha: 0.05
+  num_predictive_samples: 32
+  audit_task_fraction: 1.0
+  context_fraction: 0.5
+  min_context_workers: 1
+  min_audit_workers: 2
+  min_worker_context_edges: 1
+  adapt_only_with_evidence: true
+  require_trained_model: true
+  adaptation_steps: 100
+  adaptation_learning_rate: 0.05
+  adaptation_likelihood_temperature: 1.0
+  adaptation_kl_weight: 1.0
+  adaptation_num_elbo_samples: 4
+  adaptation_gradient_clip: 10.0
+
+path:
+  data: data
+  src: src
+  log: log

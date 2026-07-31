@@ -26,6 +26,21 @@ simulator:
     num_option_range: [2, 20]
     num_answer_each_task_range: [2, 10]
 
+cbr:
+    audit_fraction: 0.5
+    context_fraction: 0.5
+    min_context_workers: 1
+    min_audit_workers: 2
+    prior_strength: 10.0
+    confusion_prior_mode: global
+    min_pair_count: 1
+    probability_clip: 0.0001
+    variance_ridge: 0.00000001
+    num_bootstrap: 199
+    alpha: 0.05
+    refit_confusion_bootstrap: false
+    posterior_predictive_confusion_bootstrap: true
+
 path:
     data: "data"
     src: "src"

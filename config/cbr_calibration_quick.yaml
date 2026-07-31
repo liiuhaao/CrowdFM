@@ -1,0 +1,48 @@
+dim: &dim 32
+device: &device cuda:0
+checkpoint_path: checkpoint.pt
+output_path: log/cbr_calibration_quick_hierarchical.json
+
+model:
+  dim: *dim
+  device: *device
+  layer: 10
+  head: 4
+  dropout: 0.1
+
+cbr:
+  audit_fraction: 0.5
+  context_fraction: 0.5
+  min_context_workers: 1
+  min_audit_workers: 2
+  prior_strength: 10.0
+  confusion_prior_mode: global
+  min_pair_count: 1
+  probability_clip: 0.0001
+  variance_ridge: 0.00000001
+  num_bootstrap: 19
+  alpha: 0.05
+  refit_confusion_bootstrap: false
+  posterior_predictive_confusion_bootstrap: true
+
+calibration:
+  num_worlds: 2
+  base_seed: 42000
+  variants:
+    - oracle_q_oracle_p
+    - model_q_oracle_p
+    - oracle_q_estimated_p
+    - model_q_estimated_p
+  configurations:
+    - name: quick_binary
+      num_worker: 20
+      num_task: 100
+      num_option: 2
+      labels_per_task: 5
+      dim: *dim
+    - name: quick_multiclass
+      num_worker: 30
+      num_task: 150
+      num_option: 5
+      labels_per_task: 5
+      dim: *dim

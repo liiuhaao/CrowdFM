@@ -1,0 +1,56 @@
+lr: 0.0003
+weight_decay: 0.00001
+batch_size: 1
+gradient_accumulation_steps: 16
+gradient_clip: 5.0
+epochs: 10000
+save_interval: 100
+num_workers: 0
+
+backbone_checkpoint_path: checkpoint.pt
+freeze_backbone: false
+output_dir: log/crowdsi
+
+dim: &dim 32
+device: &device cuda:0
+
+model:
+  dim: *dim
+  device: *device
+  layer: 10
+  head: 4
+  dropout: 0.1
+  mechanism_latent_dim: 16
+  num_mechanism_primitives: 8
+
+simulator:
+  dim: *dim
+  num_worker_range: [20, 100]
+  num_task_range: [100, 300]
+  num_option_range: [2, 20]
+  num_answer_each_task_range: [3, 10]
+  min_answers_per_task: 3
+  mechanism_families:
+    - irt
+    - class_bias
+    - coalition
+    - assignment_bias
+    - mixed
+
+crowdsi_training:
+  audit_task_fraction: 1.0
+  context_fraction: 0.5
+  min_context_workers: 1
+  min_audit_workers: 2
+  min_worker_context_edges: 0
+  truth_loss_weight: 1.0
+  annotation_loss_weight: 1.0
+  assignment_loss_weight: 0.25
+  mechanism_kl_weight: 0.001
+  consistency_loss_weight: 0.1
+  assignment_negative_ratio: 1.0
+
+path:
+  data: data
+  src: src
+  log: log
