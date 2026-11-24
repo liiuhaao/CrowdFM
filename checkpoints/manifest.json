@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "checkpoints/classification/published.pt",
+      "bytes": 3406227,
+      "sha256": "a82016e6af465a969c9757310f06caca7fc7aff77347bb153ee25aed4c237bd2",
+      "role": "official CrowdFM classification checkpoint"
+    }
+  ]
+}

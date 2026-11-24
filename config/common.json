@@ -1,0 +1,50 @@
+{
+  "task": null,
+  "name": null,
+  "seed": 42,
+  "device": "cuda:0",
+  "iterations": 100000,
+  "batch_size": 16,
+  "gradient_accumulation_steps": 2,
+  "lr": 0.001,
+  "weight_decay": 1e-05,
+  "test_interval": 10,
+  "save_interval": 100,
+  "validation_scenes": 8,
+  "num_workers": 0,
+  "output_path": null,
+  "model": {
+    "dim": 32,
+    "layer": 10,
+    "head": 4,
+    "dropout": 0.1
+  },
+  "simulator": {
+    "num_worker_range": [
+      20,
+      100
+    ],
+    "num_task_range": [
+      100,
+      300
+    ],
+    "num_answer_each_task_range": [
+      2,
+      10
+    ]
+  },
+  "path": {
+    "data": null,
+    "log": "log"
+  },
+  "evaluation": {
+    "num_scenes": 100,
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ]
+  }
+}

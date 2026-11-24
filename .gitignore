@@ -1,6 +1,33 @@
+# Python environments and generated metadata
 .venv/
-.env
+venv/
 __pycache__/
 *.py[cod]
 *.egg-info/
-log/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+
+# Credentials and machine-specific files
+.env
+.env.*
+!.env.example
+/.runtime/
+.DS_Store
+._*
+
+# Experiment outputs and generated weights
+/log/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Keep the published classification checkpoint versioned.
+!/checkpoints/classification/published.pt
+
+# Local scratch outputs
+/work/
+/outputs/

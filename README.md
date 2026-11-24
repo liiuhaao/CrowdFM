@@ -1,61 +1,41 @@
 # CrowdFM
 
-Official implementation for the ICLR 2026 paper:
-**Towards a Foundation Model for Crowdsourced Label Aggregation**.
+### Towards a Foundation Model for Crowdsourced Label Aggregation
 
-![CrowdFM Overview](assets/CrowdFM.jpg)
+**ICLR 2026** · [Paper](https://openreview.net/pdf?id=FF9QVQduAu) · [Code](https://github.com/liiuhaao/CrowdFM)
+
+![CrowdFM](assets/CrowdFM.jpg)
+
+CrowdFM is a foundation model for crowdsourced label aggregation. It is pretrained once on domain-randomized synthetic crowdsourcing data and applied to unseen real-world datasets without dataset-specific retraining.
 
 ## Installation
 
 ```bash
-uv sync
-source .venv/bin/activate
+pip install -e .
 ```
 
-## Usage
-
-### Evaluate
-
-By default, evaluation loads `checkpoint.pt`.
+## Training
 
 ```bash
-python evaluate.py
+python train.py --task classification --device cuda:0 \
+  --iterations 10000000 --batch-size 256 --backup
 ```
 
-Optional:
+## Evaluation
 
 ```bash
-python evaluate.py checkpoint_path=<path>
+python evaluate.py --task classification --device cuda:0 \
+  --checkpoint checkpoints/classification/published.pt \
+  --data data/classification --output log/evaluation.json
 ```
-
-Results are written to `log/perform.json` by default.
-
-### Train
-
-```bash
-python train.py --backup
-```
-
-Optional:
-
-```bash
-python train.py --backup --resume
-```
-
-```bash
-python train.py --backup name=<experiment_name>
-```
-
-Training logs and checkpoints are saved under `log/<experiment_name>/` by default.
 
 ## Citation
 
-
 ```bibtex
 @inproceedings{liu2026crowdfm,
-    title={Towards a Foundation Model for Crowdsourced Label Aggregation},
-    author={Liu, Hao and Liu, Jiacheng and Tang, Feilong and Chen, Long and Yu, Jiadi and Zhu, Yanmin and Dong, Qiwen and Yu, Yichuan and Hou, Xiaofeng},
-    booktitle={The Fourteenth International Conference on Learning Representations (ICLR)},
-    year={2026},
+  title     = {Towards a Foundation Model for Crowdsourced Label Aggregation},
+  author    = {Liu, Hao and Liu, Jiacheng and Tang, Feilong and Chen, Long and Yu, Jiadi and Zhu, Yanmin and Dong, Qiwen and Yu, Yichuan and Hou, Xiaofeng},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2026}
 }
 ```
